@@ -1,89 +1,151 @@
-### 🧮 1. **Basic Arithmetic in R**
+# 💡 BASIC R CHEAT SHEET (ONE PAGE)
 
-```r
-# Addition
-a <- 10
-b <- 5
-sum_result <- a + b
-print(paste("Addition:", sum_result))
-
-# Subtraction
-sub_result <- a - b
-print(paste("Subtraction:", sub_result))
-
-# Multiplication
-mul_result <- a * b
-print(paste("Multiplication:", mul_result))
-
-# Division
-div_result <- a / b
-print(paste("Division:", div_result))
-```
+A simple all-in-one R reference for beginners — covering **data types**, **basic statistics**, **data structures**, **attributes**, and **common plots**.  
+Uses only `print()` and `paste()` (no `cat()`).
 
 ---
 
-### 📊 2. **Mean and Standard Deviation**
+## 🧩 1. BASIC DATA TYPES
 
 ```r
-# Create a numeric vector
+num <- 10.5
+int <- 10L
+char <- "Hello R!"
+logic <- TRUE
+comp <- 3 + 4i
+
+print(paste("Numeric:", class(num)))
+print(paste("Integer:", class(int)))
+print(paste("Character:", class(char)))
+print(paste("Logical:", class(logic)))
+print(paste("Complex:", class(comp)))
+````
+
+---
+
+## 📊 2. VECTORS & BASIC STATISTICS
+
+```r
 numbers <- c(5, 10, 15, 20, 25)
-
-# Mean
-mean_value <- mean(numbers)
-print(paste("Mean:", mean_value))
-
-# Standard Deviation
-sd_value <- sd(numbers)
-print(paste("Standard Deviation:", sd_value))
+print(paste("Vector Class:", class(numbers)))
+print(paste("Length:", length(numbers)))
+print(paste("Mean:", mean(numbers)))
+print(paste("Median:", median(numbers)))
+print(paste("Standard Deviation:", sd(numbers)))
 ```
 
 ---
 
-### 🔢 3. **Median**
+## 🧮 3. MATRIX
 
 ```r
-median_value <- median(numbers)
-print(paste("Median:", median_value))
+mat <- matrix(1:9, nrow = 3, ncol = 3)
+print("Matrix:")
+print(mat)
+print(paste("Class:", class(mat)))
+print("Dimensions:")
+print(dim(mat))
 ```
 
 ---
 
-### 📦 4. **Box Plot**
+## 🧾 4. DATA FRAME
 
 ```r
-# Boxplot of numbers
-boxplot(numbers,
-        main = "Boxplot of Numbers",
-        col = "skyblue",
-        border = "darkblue")
+df <- data.frame(
+  Name = c("Alice", "Bob", "Charlie"),
+  Age = c(25, 30, 28),
+  Score = c(88, 92, 79)
+)
+print("Data Frame:")
+print(df)
+print(paste("Class:", class(df)))
+print("Column Names:")
+print(colnames(df))
+print("Structure:")
+str(df)
+print("Summary:")
+summary(df)
+print("Attributes:")
+print(attributes(df))
+```
 
+---
+
+## 📈 5. COMMON PLOT STRUCTURE
+
+Common parameters used for all plots:
+
+* `main` → main title
+* `xlab`, `ylab` → axis labels
+* `col` → color
+* `border` → border color
+* `pch` → plotting symbol (for scatter plot)
+
+### Histogram
+
+```r
+values <- c(5, 8, 10, 12, 15, 18, 20, 25)
+
+hist(values,
+     main = "Histogram of Values",
+     xlab = "Value",
+     ylab = "Frequency",
+     col = "skyblue",
+     border = "black")
+print("Histogram created successfully!")
+```
+
+### Box Plot
+
+```r
+boxplot(values,
+        main = "Box Plot of Values",
+        xlab = "Data",
+        col = "orange",
+        border = "brown")
 print("Boxplot created successfully!")
 ```
 
----
-
-### ⚫ 5. **Scatter Plot**
+### Scatter Plot
 
 ```r
-# Create two vectors
 x <- c(1, 2, 3, 4, 5)
 y <- c(2, 4, 5, 7, 10)
 
-# Scatter plot
 plot(x, y,
      main = "Scatter Plot Example",
-     xlab = "X values",
-     ylab = "Y values",
+     xlab = "X Values",
+     ylab = "Y Values",
      col = "red",
      pch = 19)
-
 print("Scatter plot created successfully!")
 ```
 
 ---
 
-### ✅ Notes
+## ⚙️ 6. ATTRIBUTE FUNCTIONS DEMO
 
-* `paste()` joins text and variable values together (like string concatenation).
-* `print()` displays output on the console.
-* We’re using built-in R functions like `mean()`, `sd()`, `median()`, `boxplot()`, and `plot()`.
+Useful for inspecting R objects and their properties.
+
+```r
+print(paste("Type of df:", typeof(df)))
+print(paste("Number of Rows:", nrow(df)))
+print(paste("Number of Columns:", ncol(df)))
+print("Row Names:")
+print(rownames(df))
+print("Column Names:")
+print(colnames(df))
+print("All Attributes:")
+print(attributes(df))
+```
+
+---
+
+## 🧠 NOTES
+
+* Use `class()` to identify object type (vector, matrix, data.frame, etc.)
+* Use `typeof()` for internal data type (e.g., double, list)
+* `str()` gives a compact summary of structure
+* Always include titles and labels when plotting for clarity
+* Only `print()` and `paste()` are used for displaying results
